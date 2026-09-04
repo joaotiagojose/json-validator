@@ -1,0 +1,75 @@
+[
+  {
+    "id": "DEMO-001",
+    "property_type": "Apartment",
+    "location": "Tavira",
+    "asking_price": 245000,
+    "advertising_permission": {
+      "granted": true,
+      "source": "fictional-permission-001"
+    }
+  },
+  {
+    "id": "DEMO-002",
+    "property_type": "House",
+    "location": "Loulé",
+    "asking_price": 480000,
+    "advertising_permission": {
+      "granted": true,
+      "source": "fictional-permission-002"
+    }
+  },
+  {
+    "id": "DEMO-003",
+    "property_type": "Land",
+    "location": "Silves",
+    "asking_price": 95000,
+    "advertising_permission": {
+      "granted": false,
+      "source": "fictional-refusal-003"
+    }
+  },
+  {
+    "id": "DEMO-004",
+    "property_type": "Apartment",
+    "location": "Faro",
+    "asking_price": 210000,
+    "advertising_permission": {
+      "granted": null,
+      "source": null
+    }
+  },
+  {
+    "id": "DEMO-005",
+    "property_type": "House",
+    "location": "Olhão",
+    "asking_price": 365000
+  },
+  {
+    "id": "DEMO-006",
+    "property_type": "Land",
+    "location": "Alcoutim",
+    "asking_price": 45000,
+    "advertising_permission": null
+  },
+  {
+    "id": "DEMO-007",
+    "property_type": "Apartment",
+    "location": "Portimão",
+    "asking_price": 189000,
+    "advertising_permission": {
+      "granted": true,
+      "source": null
+    }
+  },
+  {
+    "id": "DEMO-008",
+    "property_type": "House",
+    "location": "São Brás de Alportel",
+    "asking_price": 325000,
+    "advertising_permission": {
+      "granted": false,
+      "source": "   "
+    }
+  }
+]

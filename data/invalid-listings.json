@@ -1,0 +1,57 @@
+[
+  {
+    "id": "ERROR-001",
+    "property_type": "House",
+    "location": "Faro",
+    "asking_price": -10000
+  },
+  {
+    "id": "ERROR-002",
+    "property_type": "Apartment",
+    "location": "Tavira",
+    "asking_price": "250000"
+  },
+  {
+    "id": "ERROR-003",
+    "location": "Loulé",
+    "asking_price": 300000
+  },
+  {
+    "id": "ERROR-004",
+    "property_type": "Castle",
+    "location": "Silves",
+    "asking_price": 900000
+  },
+  {
+    "id": "ERROR-005",
+    "property_type": "Land",
+    "location": "   ",
+    "asking_price": 65000
+  },
+  {
+    "id": "ERROR-006",
+    "property_type": "House",
+    "location": "Olhão",
+    "asking_price": 350000,
+    "advertising_permission": {
+      "granted": "yes",
+      "source": "fictional-permission-error-006"
+    }
+  },
+  {
+    "id": "ERROR-007",
+    "property_type": "Apartment",
+    "location": "Portimão",
+    "asking_price": 190000,
+    "advertising_permission": {
+      "granted": true,
+      "source": 123
+    }
+  },
+  {
+    "id": "ERROR-008",
+    "property_type": "Land",
+    "location": "Alcoutim",
+    "asking_price": 0
+  }
+]
