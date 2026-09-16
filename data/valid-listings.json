@@ -1,0 +1,22 @@
+[
+  {
+    "id": "DEMO-VALID-001",
+    "property_type": "Apartment",
+    "location": "Tavira",
+    "asking_price": 245000,
+    "advertising_permission": {
+      "granted": true,
+      "source": "fictional-permission-valid-001"
+    }
+  },
+  {
+    "id": "DEMO-VALID-002",
+    "property_type": "House",
+    "location": "Loulé",
+    "asking_price": 480000,
+    "advertising_permission": {
+      "granted": true,
+      "source": "fictional-permission-valid-002"
+    }
+  }
+]

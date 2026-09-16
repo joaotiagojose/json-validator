@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "json-validator: debug",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/debug/json-validator",
+      "windows": {
+        "program": "${workspaceFolder}/target/debug/json-validator.exe"
+      },
+      "cwd": "${workspaceFolder}",
+      "args": ["data/listings.json"],
+      "terminal": "integrated",
+      "preLaunchTask": "json-validator: build"
+    }
+  ]
+}

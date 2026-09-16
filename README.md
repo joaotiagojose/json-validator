@@ -1,51 +1,80 @@
-# json-validator
+﻿# json-validator
 
-A command-line validator for property-listing data stored in JSON, written in Rust.
+[![CI](https://github.com/joaotiagojose/json-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/joaotiagojose/json-validator/actions/workflows/ci.yml)
 
-## Current status
+A Rust command-line tool for checking property-listing JSON before an import or publication pipeline. Get actionable diagnostics in the terminal or a JSON report for automation.
 
-Under development. The repository contains the initial project structure and sample input data. The validation pipeline is not yet implemented.
+**Unknown information never counts as confirmed.** The validator distinguishes invalid input from evidence that is confirmed, rejected, or insufficient.
 
-## Goal
+- Validate a file or every `.json` file directly inside a folder, in a stable order.
+- Report malformed JSON, missing fields, incorrect types, and invalid values.
+- Keep validation issues and evidence outcomes visible for each listing.
+- Use exit codes and machine-readable reports in scripts and CI.
 
-Read a local JSON file containing property listings, apply explicit validation rules, and produce a report explaining each result.
+## Quick start
 
-Core principle: **unknown information must never be treated as confirmed information**.
+Install [Rust](https://www.rust-lang.org/tools/install), then run from the repository root:
 
-## Scope of the first version
+```sh
+cargo run -- data/valid-listings.json
+```
 
-- Support one documented JSON format and one local input file per run.
-- Parse listing fields, including an identifier, property type, location, and asking price.
-- Report malformed JSON, missing required fields, incorrect types, and invalid values.
-- Evaluate evidence-dependent rules using explicit states: `Confirmed`, `Rejected`, and `Unknown`.
-- Print a terminal report identifying the listing, the check, its outcome, and the reason.
-- Add focused tests for valid input, invalid input, and incomplete evidence.
+```text
+data/valid-listings.json
+  PASS DEMO-VALID-001 [Confirmed]
+    Permission is explicitly granted and includes a source.
+  PASS DEMO-VALID-002 [Confirmed]
+    Permission is explicitly granted and includes a source.
 
-Sample input data is available in [data](data/). All sample listings are fictional.
+Summary: 1 file(s), 2 listing(s), 2 passed, 0 invalid
+Evidence: 2 Confirmed, 0 Rejected, 0 Unknown; 0 file error(s)
+Result: PASS
+```
 
-## Evidence handling
+Try a mixed batch to see how incomplete and rejected evidence is reported:
 
-Input errors and evidence outcomes are separate concepts. A malformed price is a validation error; an absent piece of evidence leaves the corresponding evidence check unknown.
+```sh
+cargo run -- data/listings.json
+```
 
-| State | Meaning |
+All sample listings are fictional. The mixed examples deliberately produce a nonzero exit status.
+
+## Usage
+
+```sh
+# Process the JSON files directly inside a folder
+cargo run -- data
+
+# Produce a JSON report suitable for scripts and CI
+cargo run -- data --format json
+
+# Show command-line options
+cargo run -- --help
+```
+
+Each file is limited to 10 MiB. Duplicate object keys and unsupported fields are rejected; symlinks encountered while scanning a directory are skipped.
+
+To install the executable locally:
+
+```sh
+cargo install --path . --locked
+json-validator data/valid-listings.json
+```
+
+| Exit code | Meaning |
 | --- | --- |
-| `Confirmed` | Explicit evidence in the input satisfies the defined requirement. |
-| `Rejected` | Explicit evidence in the input shows that the requirement is not met. |
-| `Unknown` | Evidence is missing, incomplete, expired, contradictory, or otherwise insufficient. |
+| `0` | Every listing is valid and its evidence outcome is `Confirmed`. |
+| `1` | Input contains malformed JSON, validation failures, or an evidence outcome of `Rejected` or `Unknown`. |
+| `2` | Command usage, file access, or input discovery failed. |
 
-Only `Confirmed` passes an evidence-dependent check. Confirmation is limited to the rules and evidence supplied in the input; independent verification of property claims is outside this project's scope.
+The validator evaluates assertions supplied in the input. It does not verify documents or property claims with external sources, or check whether evidence has expired. A `Confirmed` result is limited to the checks implemented here.
 
-## Implementation roadmap
+## Development
 
-1. Implement JSON parsing and field validation.
-2. Evaluate evidence states and generate diagnostic messages.
-3. Produce terminal reports for multiple listings.
-4. Add automated coverage for parsing, field rules, and evidence states.
+```sh
+cargo fmt --all -- --check
+cargo clippy --all-targets --locked -- -D warnings
+cargo test --locked
+```
 
-## Outside the initial scope
-
-- Web interfaces, HTTP servers, and asynchronous runtimes.
-- Databases, authentication, and deployment.
-- Scraping, external APIs, and live property verification.
-
-Additional command-line options and report formats are planned after the core validation pipeline.
+GitHub Actions runs these checks on Windows and Linux and builds release executables as workflow artifacts.

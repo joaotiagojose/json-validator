@@ -2,5 +2,10 @@
 name = "json-validator"
 version = "0.1.0"
 edition = "2024"
+description = "Validate property-listing JSON with explicit evidence states and actionable diagnostics."
+repository = "https://github.com/joaotiagojose/json-validator"
+publish = false
 
 [dependencies]
+serde = "1.0.229"
+serde_json = "1.0.151"

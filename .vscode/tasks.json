@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "json-validator: build",
+      "type": "process",
+      "command": "cargo",
+      "args": ["build", "--locked", "--manifest-path", "${workspaceFolder}/Cargo.toml", "--bin", "json-validator", "--target-dir", "${workspaceFolder}/target"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$rustc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
